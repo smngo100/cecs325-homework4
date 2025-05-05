@@ -77,18 +77,17 @@ int main() {
         std::string input;
         std::getline(std::cin, input);
 
-
-        // Parse command and argument
+        // Parse command and path
         std::string command;    // Stores the command (e.g. "cd" "list")
-        std::string argument;   // Stores arguments after the command
+        std::string path;       // Stores path after the command
         size_t space = input.find(' ');
         if (space != std::string::npos) {
             command = input.substr(0, space);
-            argument = input.substr(space + 1);
+            path = input.substr(space + 1);
         }
         else {
             command = input;
-            argument = "";
+            path = "";
         }
 
         // Process commands
@@ -96,7 +95,7 @@ int main() {
             std::cout << "Working directory: " << workingDir.string() << std::endl;
         }
         else if (command == "cd") {
-            workingDir = change_directory(workingDir, argument);
+            workingDir = change_directory(workingDir, path);
         }
         else if (command == "list") {
             list_directory(workingDir);
